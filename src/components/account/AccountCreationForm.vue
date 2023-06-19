@@ -48,7 +48,7 @@ export default {
     methods: {
         onSubmit () {
             const { email, password, roleType } = this
-            axiosInst.post('/account/register', { email, password, roleType })
+            axiosInst.axiosInst.post('/account/register', { email, password, roleType })
                 .then((res) => {
                     this.redo = res.data
                     if (this.redo) {

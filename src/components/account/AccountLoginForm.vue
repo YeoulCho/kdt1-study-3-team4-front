@@ -11,6 +11,7 @@
                                     </v-text-field>
                                     <v-text-field
                                         v-model="password"
+                                        type="password" 
                                         label="비밀번호"
                                         required>
                                     </v-text-field>
@@ -27,6 +28,7 @@
   </template>
   
 <script>
+import router from '@/router';
 import axiosInst from '@/utility/axiosInst'
 import { mapActions } from 'vuex';
 const MemberModule = 'MemberModule'
@@ -44,7 +46,7 @@ export default {
   methods: {
     onSubmit() {
       const { email, password } = this
-      axiosInst.post('/account/login', { email, password })
+      axiosInst.axiosInst.post('/account/login', { email, password })
         .then((res) => {
           this.userToken = res.data.userToken
           this.role = res.data.roleType
@@ -54,11 +56,13 @@ export default {
             localStorage.setItem("userToken", this.userToken)
             this.setUserToken(this.userToken)
             localStorage.setItem("role", this.role)
+            localStorage.setItem("login", true)
 
             alert('로그인 성공!')
-            this.$router.push({
-              name: 'ProductListPage',
-            })
+            // this.$router.push({
+            //   name: 'ProductListPage',
+            // })
+            router.push('/Product-list-page')
           }
         })
         
@@ -66,7 +70,7 @@ export default {
     ...mapActions(
       MemberModule, ['setUserToken']
     )
-  }
+  },
 }
 </script>
 <style scoped>

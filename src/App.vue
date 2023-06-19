@@ -18,17 +18,22 @@
         </abbr>  
       </router-link>
         <v-row justify="end">
-          <v-col cols="auto">
-            
-            <router-link to="/account-creation-page">
+          <v-col cols="auto"> 
+            <router-link v-if="!login" to="/account-creation-page">
               <v-btn color="teal lighten-2">
                 <span>회원가입</span>
                   <v-icon right>mdi-account-plus-outline</v-icon>
               </v-btn>
-                </router-link>
-            <router-link to="/account-login-page">
+            </router-link>
+            <router-link v-if="!login" to="/account-login-page">
               <v-btn color="teal lighten-2">
                 <span>로그인</span>
+                  <v-icon right>mdi-account-check-outline</v-icon>
+              </v-btn>
+            </router-link>
+            <router-link v-if="login" to="/">
+              <v-btn color="teal lighten-2" @click="logout">
+                <span>로그아웃</span>
                   <v-icon right>mdi-account-check-outline</v-icon>
               </v-btn>
             </router-link>
@@ -43,18 +48,41 @@
 
 <script>
 import { mapState } from 'vuex';
+import router from './router';
 const MemberModule = 'MemberModule'
 
 export default {
+  data(){
+    return{
+      login: false
+    }
+  },
   name: 'App',
 
   computed: {
       ...mapState(MemberModule, ['member']),
       orderHistoryPage() {
         return '/order-history-page/' + (this.member ? this.member.userToken : '');
-      }
+      },
     },
-};
+    created(){
+      this.check() 
+    },
+    beforeUpdate() {
+      this.check()
+    },
+    methods:{
+    check(){
+      if (localStorage.getItem("login")) {
+        this.login = true;
+        //router.go("/")
+      }},
+    logout() {
+      localStorage.clear()
+      this.login = false;
+    }
+    },
+  }
 </script>
 <style scoped>
 .listLink{

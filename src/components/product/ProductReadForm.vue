@@ -9,7 +9,7 @@
                             <v-img
                                 :src="require(`D:/Github/kdt1-study-3-team4-back/demo/src/main/java/com/example/demo/UploadImgs/${imagePath}`)"
                             <v-img
-                                :src="require(`@/../../../kdt1-study-3-team4-back/demo/src/main/java/com/example/demo/UploadImgs/${imagePath}`)"
+                                :src="require(`C:/Users/82108/Documents/GitHub/kdt1-study-3-team4-back/demo/src/main/java/com/example/demo/uploadImgs/${imagePath}`)"
                                 aspect-ratio="1" class="grey lighten-2">
                                 <template v-slot:placeholder>
                                     <v-row class="fill-height ma-0" align="center" justify="center">

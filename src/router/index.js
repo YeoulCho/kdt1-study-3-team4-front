@@ -4,6 +4,7 @@ import defaultSetRoutes from './defaultRouterSet'
 import productRoutes from './product'
 import accountRoutes from './account'
 import orderRoutes from './order'
+import loanRoutes from './loan'
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
   ...productRoutes,
   ...accountRoutes,
   ...orderRoutes,
+  ...loanRoutes,
 
 ]
 
