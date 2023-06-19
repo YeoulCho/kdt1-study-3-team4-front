@@ -7,12 +7,12 @@ import axiosInst from '@/utility/axiosInst'
 
 export default {
   requestProductListToSpring({ commit }) {
-    return axiosInst.get("/product/list").then((res) => {
+    return axiosInst.axiosInst.get("/product/list").then((res) => {
       commit(REQUEST_PRODUCT_LIST_TO_SPRING, res.data);
     });
   },
   requestRegisterProductToSpring({ }, payload) {
-    return axiosInst.post('/product/register', payload)
+    return axiosInst.axiosInst.post('/product/register', payload)
       .then((res) => {
         if (res.data) {
           alert('게시물 등록 성공!')
@@ -26,7 +26,7 @@ export default {
       })
   },
   requestProductToSpring({ commit }, productId) {
-    return axiosInst.get(`/product/read/${productId}`)
+    return axiosInst.axiosInst.get(`/product/read/${productId}`)
       .then((res) => {
         commit(REQUEST_PRODUCT_TO_SPRING, res.data)
       })
@@ -34,7 +34,7 @@ export default {
   requestProductModifyToSpring({ }, { payload, productId }) {
 
 
-    return axiosInst.put(`/product/modify/${productId}`, payload)
+    return axiosInst.axiosInst.put(`/product/modify/${productId}`, payload)
       .then((res) => {
         alert("수정 성공!")
       })
